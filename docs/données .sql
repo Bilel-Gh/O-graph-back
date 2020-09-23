@@ -44,3 +44,10 @@ INSERT INTO comment_list (sticker_id, "name")
 INSERT INTO comment ("text", "list_comment_id", "user_id")
 VALUES ('Le premier commentaire', '1', '4'),
         ('réponse au commentaire', '1', '3');
+
+INSERT INTO user_has_project
+VALUES ('2', '3'),
+        ('3', '7'),
+        ('4', '6'),
+        ('5', '2'),
+        ('3', '5');
