@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=relation-graphiste
+
+init 2020-09-23T12:09:44Z "Etudiant O'clock",,, <etudiant@teleporteur> # initialization of the database.
