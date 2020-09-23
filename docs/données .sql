@@ -5,7 +5,6 @@ VALUES ('superAdmin', 'bobby@gmail.com', 'bobby','Bobby', 'Stone', ' '),
         ('client', 'adadis@gmail.com', 'adadis', ' ', ' ', 'Adadis'),
         ('client', 'vilvoc@gmail.com', 'vilvoc', ' ',  ' ', 'Vilvoc')
 
-
 INSERT INTO project (name, statut, create_date)
     VALUES 
         ('Basket black Adadis', 'termine', now()), 
@@ -33,32 +32,15 @@ INSERT INTO image (image_url, list_image_id)
         ('/public/images/img-12345678', '1'),
         ('/public/images/img-23456789', '2');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-INSERT INTO sicker ("image_id", "position_x", "position_y")
+INSERT INTO sticker ("image_id", "position_x", "position_y")
 VALUES ('1', '50', '50'),
         ('1', '100', '150');
 
+INSERT INTO comment_list (sticker_id, "name")
+    VALUES
+        ('1', 'modifier la couleur du fond en bleu ciel'),
+        ('2', 'Modifier le texte du titre en plus gros et en gras');
 
-
-
-
-
-
-
-
-
-
-
+INSERT INTO comment ("text", "list_comment_id", "user_id")
+VALUES ('Le premier commentaire', '1', '4'),
+        ('réponse au commentaire', '1', '3');
