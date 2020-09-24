@@ -1,9 +1,9 @@
-INSERT INTO "user" ("role", "email", "password", "first_name", "last_name", "company_name")
-VALUES ('superAdmin', 'bobby@gmail.com', 'bobby','Bobby', 'Stone', ' '),
-        ('graphiste', 'david@gmail.com', 'david', 'David', 'Lewis', ' '),
-        ('graphiste', 'michael@gmail.com', 'michael', 'Michael', 'Jordan', ' '),
-        ('client', 'adadis@gmail.com', 'adadis', ' ', ' ', 'Adadis'),
-        ('client', 'vilvoc@gmail.com', 'vilvoc', ' ',  ' ', 'Vilvoc')
+INSERT INTO "user" ("role", "email", "password", "first_name", "last_name", "company_name", "image")
+VALUES ('superAdmin', 'bobby@gmail.com', 'bobby','Bobby', 'Stone', ' ', "/public/images/users/img-12345678.jpg"),
+        ('graphiste', 'david@gmail.com', 'david', 'David', 'Lewis', ' ', "/public/images/users/img-23456789.jpg"),
+        ('graphiste', 'michael@gmail.com', 'michael', 'Michael', 'Jordan', ' ', "/public/images/users/img-34567890.jpg"),
+        ('client', 'adadis@gmail.com', 'adadis', ' ', ' ', 'Adadis', "/public/images/users/img-456789012.jpg"),
+        ('client', 'vilvoc@gmail.com', 'vilvoc', ' ',  ' ', 'Vilvoc', "/public/images/users/img-567890123.jpg");
 
 INSERT INTO project (name, statut, create_date)
     VALUES 
@@ -44,3 +44,10 @@ INSERT INTO comment_list (sticker_id, "name")
 INSERT INTO comment ("text", "list_comment_id", "user_id")
 VALUES ('Le premier commentaire', '1', '4'),
         ('réponse au commentaire', '1', '3');
+
+INSERT INTO user_has_project
+VALUES ('2', '3'),
+        ('3', '7'),
+        ('4', '6'),
+        ('5', '2'),
+        ('3', '5');

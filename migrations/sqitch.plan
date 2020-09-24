@@ -2,3 +2,6 @@
 %project=relation-graphiste
 
 init 2020-09-23T12:09:44Z "Etudiant O'clock",,, <etudiant@teleporteur> # initialization of the database.
+add_column_image 2020-09-24T07:39:10Z "Etudiant O'clock",,, <etudiant@teleporteur> # ajout de la colonne image dans la table user
+add_column_visible 2020-09-24T09:41:38Z "Etudiant O'clock",,, <etudiant@teleporteur> # ajout de la colonne visible dans la table sticker
+add_column_DateTime 2020-09-24T12:29:17Z "Etudiant O'clock",,, <etudiant@teleporteur> # Ajout de la colonne DateTime dans la table comment.
