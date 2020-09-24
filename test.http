@@ -1,0 +1,16 @@
+### Créer un commentaire
+POST http://localhost:3000/comment/new
+Content-Type: application/json
+
+{
+    "text": "ceci est encore un commentaire",
+    "list_comment_id": 3,
+    "user_id": 5
+}
+
+### Afficher les commentaires d'une liste de commentaires 
+GET http://localhost:3000/comment/3
+
+
+### Afficher le/les projet d'un user
+GET http://localhost:3000/project/3
