@@ -14,3 +14,12 @@ GET http://localhost:3000/comment/3
 
 ### Afficher le/les projet d'un user
 GET http://localhost:3000/project/3
+
+
+### Affiche le/les projets en fonction de la recherche
+GET http://localhost:3000/searchProject
+Content-Type: application/json
+
+{
+    "searchString": "ILVOC"
+}
