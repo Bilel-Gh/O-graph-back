@@ -4,8 +4,9 @@ const projectController = require('../controllers/projectController');
 
 const router = express.Router();
 
-
-router.get('/project/:id', projectController.findProjectByUserId);
+router.post('/createProject', projectController.createProject);
+router.post('/updateProject', projectController.updateProject);
+router.get('/project', projectController.findProjectByUserId);
 router.get('/searchProject', projectController.searchProject);
 
 

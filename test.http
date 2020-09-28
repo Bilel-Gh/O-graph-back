@@ -1,5 +1,5 @@
 ### Créer un commentaire
-POST http://localhost:3000/comment/new
+POST http://localhost:3000/newComment
 Content-Type: application/json
 
 {
@@ -9,11 +9,39 @@ Content-Type: application/json
 }
 
 ### Afficher les commentaires d'une liste de commentaires 
-GET http://localhost:3000/comment/3
+POST http://localhost:3000/comment
+Content-Type: application/json
 
+{
+    "list_comment_id": 4
+}
+
+
+### créer un nouveau projet
+POST http://localhost:3000/createProject
+Content-Type: application/json
+
+{
+    "name": "Nouveau Projet"
+}
+
+### Modifier un projet
+POST http://localhost:3000/updateProject
+Content-Type: application/json
+
+{
+    "name": "Encore un nouveau Projet",
+    "statut": "presque terminé",
+    "project_id": 12
+}
 
 ### Afficher le/les projet d'un user
-GET http://localhost:3000/project/3
+GET http://localhost:3000/project
+Content-Type: application/json
+
+{
+    "user_id": 3
+}
 
 
 ### Affiche le/les projets en fonction de la recherche
@@ -31,5 +59,73 @@ Content-Type: application/json
 
 {
     "email": "bobby@gmail.com",
-    "password": "bob"
+    "password": "bobby"
+}
+
+
+### Affiche touts les utilisateurs
+GET http://localhost:3000/users
+
+
+### affiche les utilisateurs par leurs rôle
+POST http://localhost:3000/usersByRole
+Content-Type: application/json
+
+{
+    "role": "graphiste"
+}
+
+
+### Affiche les utilisateurs par leurs id
+POST http://localhost:3000/userById
+Content-Type: application/json
+
+{
+    "id": 1
+}
+
+### Affiche les utilisateurs en fonction de leur(s) projet(s)
+POST http://localhost:3000/usersByProjectId
+Content-Type: application/json
+
+{
+    "project_id": 2
+}
+
+
+### créer une nouvelle liste de commentaires
+POST http://localhost:3000/newCommentList
+Content-Type: application/json
+
+{
+    "sticker_id": 5, 
+    "name": "Ah que coucou"
+}
+
+
+### Créer un nouveau feeedback
+POST http://localhost:3000/newFeedback
+Content-Type: application/json
+
+{
+    "project_id": 5,
+    "user_id": 2,
+    "name": "Nouveau feedback"
+}
+
+### Mettre à jour un feedback
+PATCH http://localhost:3000/updateFeedback
+Content-Type: application/json
+
+{
+    "return_date": "now()",
+    "id": 4
+}
+
+### Affiche le/les feedback(s) d'un projet
+GET http://localhost:3000/feedbackByProjectId
+Content-Type: application/json
+
+{
+    "project_id": 5
 }

@@ -5,3 +5,5 @@ init 2020-09-23T12:09:44Z "Etudiant O'clock",,, <etudiant@teleporteur> # initial
 add_column_image 2020-09-24T07:39:10Z "Etudiant O'clock",,, <etudiant@teleporteur> # ajout de la colonne image dans la table user
 add_column_visible 2020-09-24T09:41:38Z "Etudiant O'clock",,, <etudiant@teleporteur> # ajout de la colonne visible dans la table sticker
 add_column_DateTime 2020-09-24T12:29:17Z "Etudiant O'clock",,, <etudiant@teleporteur> # Ajout de la colonne DateTime dans la table comment.
+image_size 2020-09-28T07:48:31Z "Etudiant O'clock",,, <etudiant@teleporteur> # create column heigth and width
+create_view_user_without-password 2020-09-28T09:39:41Z "Etudiant O'clock",,, <etudiant@teleporteur> # create view user without password

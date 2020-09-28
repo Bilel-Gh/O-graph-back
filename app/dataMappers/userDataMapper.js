@@ -9,26 +9,26 @@ module.exports = {
     },
 
     // Récupération des utilisateurs en fonction de leurs rôle
-    findUserByRole: async function(role) {
+    findUserByRole: async function(data) {
 
-        const result = await client.query('SELECT * FROM "user" WHERE role = $1', [role]);
+        const result = await client.query('SELECT * FROM user_without_password WHERE role = $1;', [data.role]);
         return result.rows;
     },
 
     // Récupération des utilisateur par leurs id
-    findUserById: async function(id) {
+    findUserById: async function(data) {
 
-        const result = await client.query('SELECT * FROM "user" WHERE id = $1', [id]);
+        const result = await client.query('SELECT * FROM user_without_password WHERE id = $1;', [data.id]);
         return result.rows[0];
     },
 
     // Récupération des utilisateur par leurs projets
-    findUserByProjectId: async function(id){
+    findUserByProjectId: async function(data){
 
         const result = await client.query(`
-            SELECT * FROM "user" JOIN user_has_project 
-                ON user_has_project.user_id = "user".id 
-                WHERE user_has_project.project_id = $1`, [id]);
+            SELECT * FROM user_without_password JOIN user_has_project 
+                ON user_has_project.user_id = user_without_password.user_id 
+                WHERE user_has_project.project_id = $1;`, [data.project_id]);
         return result.rows;
     },
 

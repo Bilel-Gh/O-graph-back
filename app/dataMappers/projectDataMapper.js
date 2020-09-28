@@ -2,13 +2,25 @@ const client = require('./client');
 
 module.exports = {
 
+    createProject: async function(data) {
+        await client.query(`
+            INSERT INTO project ("name", statut) 
+            VALUES ($1, $2);`, [data.name, data.statut]);
+    },
+
+    updateProject: async function(data) {
+        await client.query(`
+            UPDATE project SET name = $1, statut = $2 WHERE id = $3
+        ;`, [data.name, data.statut, data.project_id]);
+    },
+
     // Récupération du/des projet d'un utilisateur
-    findProjectByUserId: async function(id){
+    findProjectByUserId: async function(data){
 
         const result = await client.query(`
             SELECT * FROM project JOIN user_has_project 
                 ON user_has_project.project_id = project.id 
-                WHERE user_has_project.user_id = $1`, [id]);
+                WHERE user_has_project.user_id = $1`, [data.user_id]);
         return result.rows;
     },
 
