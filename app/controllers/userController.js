@@ -33,6 +33,36 @@ module.exports = {
             res.json({'message': 'Le password est incorect'});
         }
 
+    },
+
+
+    findUsers: async function(_, res) {
+
+        const users = await userDataMapper.findUsers();
+        res.json(users);
+    },
+
+
+    findUserByRole: async function(req, res) {
+
+        const users = await userDataMapper.findUserByRole(req.body);
+        res.json(users);
+    },
+
+
+    findUserById: async function(req, res) {
+
+        const user = await userDataMapper.findUserById(req.body);
+        res.json(user);
+    },
+
+    findUserByProjectId: async function(req, res) {
+
+        const users = await userDataMapper.findUserByProjectId(req.body);
+        res.json(users);
     }
+
+
+
     
 };

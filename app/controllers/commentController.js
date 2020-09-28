@@ -2,23 +2,23 @@ const commentDataMapper = require('../dataMappers/commentDataMapper');
 
 module.exports = {
     
-    createComment: async function(request, response){
+    createComment: async function(req, res){
         try {
-            await commentDataMapper.createComment(request.body);
-            response.status(200).json({"message": "Le commentaire a bien été créé"});
+            await commentDataMapper.createComment(req.body);
+            res.status(201).send('Le commentaire a bien été créé');
         } catch(error){
             console.trace(error);
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     },
 
-    findComment: async function(request, response){
+    findComment: async function(req, res){
         try {
-            const comments = await commentDataMapper.findComment(request.params.id);
-            response.json(comments);
+            const comments = await commentDataMapper.findComment(req.body);
+            res.json(comments);
         } catch(error){
             console.trace(error);
-            response.status(500).json(error);
+            res.status(500).json(error);
         }
     }
 }

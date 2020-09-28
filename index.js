@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 const commentRouter = require('./app/routers/commentRouter');
 const projectRouter = require('./app/routers/projectRouter');
 const userRouter = require('./app/routers/userRouter');
+const commentListRouter = require('./app/routers/commentListRouter');
+const feedbackRouter = require('./app/routers/feedbackRouter');
+const imageRouter = require('./app/routers/imageRouter');
+const imageListRouter = require('./app/routers/imageRouter');
+const stickerRouter = require('./app/routers/stickerRouter');
 
 const session = require('express-session');
 
@@ -36,6 +41,11 @@ app.use(
 app.use(commentRouter);
 app.use(projectRouter);
 app.use(userRouter);
+app.use(commentListRouter);
+app.use(feedbackRouter);
+app.use(imageRouter);
+app.use(imageListRouter);
+app.use(stickerRouter);
 
 const port = process.env.PORT || 3000;
 
