@@ -1,3 +1,5 @@
+#### COMMENT
+
 ### Créer un commentaire
 POST http://localhost:3000/newComment
 Content-Type: application/json
@@ -16,6 +18,8 @@ Content-Type: application/json
     "list_comment_id": 4
 }
 
+
+#### PROJECT
 
 ### créer un nouveau projet
 POST http://localhost:3000/createProject
@@ -63,6 +67,8 @@ Content-Type: application/json
 }
 
 
+#### USER
+
 ### Affiche touts les utilisateurs
 GET http://localhost:3000/users
 
@@ -93,6 +99,8 @@ Content-Type: application/json
 }
 
 
+#### COMMENTLIST
+
 ### créer une nouvelle liste de commentaires
 POST http://localhost:3000/newCommentList
 Content-Type: application/json
@@ -102,6 +110,16 @@ Content-Type: application/json
     "name": "Ah que coucou"
 }
 
+### Affiche les commentaires liées à un sticker
+GET http://localhost:3000/commentListByStickerId
+Content-Type: application/json
+
+{
+    "sticker_id": 5
+}
+
+
+#### FEEDBACK
 
 ### Créer un nouveau feeedback
 POST http://localhost:3000/newFeedback
@@ -128,4 +146,81 @@ Content-Type: application/json
 
 {
     "project_id": 5
+}
+
+#### IMAGE
+
+### Ajouter une nouvelle image
+POST http://localhost:3000/newImage
+Content-Type: application/json
+
+## 'URl de l'image' attend l'url renvoyées lors de l'upload ↓
+{
+    "image_url": URL de l'image,
+    "list_image_id": 2,
+    "default_height":,
+    "default_width":
+}
+
+### Uploader une image
+POST http://localhost:3000/uploadImage
+
+###  enctype="multipart/form-data → Voir avec nous.
+
+### Affiche les images en fonction de l'id de leurs list d'image
+GET http://localhost/imageByListImageId
+Content-Type: application/json
+
+{
+    "list_image_id": 2
+}
+
+
+#### IMAGELIST
+
+### Créer une nouvelle lliste d'image
+POST http://localhost:3000/newImageList
+Content-Type: application/json
+
+{
+    "feedback_id": 1,
+    "name": "Nouvelle liste d'image"
+}
+
+### Affiche la/les liste(s) d'image liées à l'id du feedback
+GET http://localhost:3000/imageListByFeedbackId
+Content-Type: application/json
+
+{
+    "feedback_id": 1
+}
+
+
+#### STICKER
+
+### Créer un nouveau sticker
+POST http://localhost:3000/createnewsticker
+Content-Type: application/json
+
+{
+    "image_id": 3,
+    "position_x": 150,
+    "position_y": 200
+}
+
+### Afficher les sticker liées à une image
+GET http://localhost:3000/findstickers
+Content-Type: application/json
+
+{
+    "image_id": 2
+}
+
+### Modifier l'état d'un sticker
+PATCH http://localhost:3000/stickerstateupdate
+Content-Type: application/json
+
+{
+    "visible": , (true/false Par default à True)
+    "id": 1 
 }

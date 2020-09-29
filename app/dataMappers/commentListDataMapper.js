@@ -4,8 +4,9 @@ module.exports = {
 
     createCommentList: async function(data){
 
-        await client.query(`INSERT INTO comment_list ("sticker_id", "name")
+       const result = await client.query(`INSERT INTO comment_list ("sticker_id", "name")
                             VALUES ($1, $2);`, [data.sticker_id, data.name]);
+        return result.rows;
     },
 
 
