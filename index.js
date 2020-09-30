@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
+const cors = require('cors');
 
 const commentRouter = require('./app/routers/commentRouter');
 const projectRouter = require('./app/routers/projectRouter');
@@ -18,6 +19,8 @@ const session = require('express-session');
 const express = require('express');
 
 const app = express();
+
+app.use(cors('*'));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
