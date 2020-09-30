@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 const client = require('../app/dataMappers/client');
 
 
@@ -11,19 +11,21 @@ module.exports = {
 
         const user = await client.query(`SELECT * FROM "user" WHERE email = $1 AND password = $2;`, [email, password])
 
-        let userArray = [];
-
-        for(var property in user.rows[0]) {
-            userArray.push(property + "=" + user.rows[0][property]);
-        }
+            console.log('refresh', process.env.REFRESH_TOKEN_LIFE);
+            console.log('token', process.env.ACCESS_TOKEN_LIFE);
 
         if(!user) {
             res.status(401).send('L\'email ou le password sont incorrects');
         } else {
 
-            let payload = {email: email}
+            let payload = {
+                            id : user.rows[0].id,
+                            email: user.rows[0].email,
+                            role : user.rows[0].role
+                        }
+
             
-            let accessToken = jwt.sign(payload,
+            let accessToken = await jwt.sign(payload,
                 process.env.ACCESS_TOKEN_SECRET, {
 
                     algorithm: "HS256",
@@ -31,7 +33,7 @@ module.exports = {
                     expiresIn: process.env.ACCESS_TOKEN_LIFE
                 })
 
-            let refreshToken = jwt.sign(payload,
+            let refreshToken = await jwt.sign(payload,
                 process.env.REFRESH_TOKEN_SECRET, {
 
                     algorithm: "HS256",
@@ -40,42 +42,64 @@ module.exports = {
                 })
 
                 let usertoken = {
-                    "email": userArray[email],
-                    "password": userArray[password]
+                    "id": user.rows[0].id,
+                    "email": user.rows[0].email,
+                    "role": user.rows[0].role
                 }
 
                 usertoken.refreshToken = refreshToken
 
 
-                res.cookie("jwt", accessToken, {secure: true})
-                res.send()
+                res.header('authtoken', accessToken).send();
         }
     },
 
-    refresh: function (req, res){
+    refresh: function(req, res){
 
-        let accessToken = req.cookies.jwt
+        let accessToken = req.headers.authtoken;
+
+        console.log(accessToken);
 
         if (!accessToken){
             return res.status(403).send()
         }
 
         let payload
+        
         try{
-            payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+            payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+
+            console.log('Payload : ', payload);
         }
         catch(e){
+            console.log('ici 1er');
             return res.status(401).send()
         }
 
+        let userRefreshToken = {
+            "id": payload.id,
+            "email": payload.email,
+            "role": payload.role,
+        }
+
+        console.log('userRefershToken : ', userRefreshToken);
         //retrieve the refresh token from the users array
-        let refreshToken = users[payload.username].refreshToken
+
+        let refreshToken;
+        
+        refreshToken.userRefreshToken = userRefreshToken;
+
+        console.log('refreshtoken', refreshToken);
+
+        
 
         //verify the refresh token
         try{
+            console.log('on est ici');
             jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
         }
         catch(e){
+            console.log('2eme');
             return res.status(401).send()
         }
 
@@ -85,8 +109,7 @@ module.exports = {
             expiresIn: process.env.ACCESS_TOKEN_LIFE
         })
 
-        res.cookie("jwt", newToken, {secure: true, httpOnly: true})
-        res.send()
+        res.header('authtoken', newToken).send()
     }
 
 }
