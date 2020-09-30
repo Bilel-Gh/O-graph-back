@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 const commentRouter = require('./app/routers/commentRouter');
 const projectRouter = require('./app/routers/projectRouter');
@@ -10,6 +11,7 @@ const feedbackRouter = require('./app/routers/feedbackRouter');
 const imageRouter = require('./app/routers/imageRouter');
 const imageListRouter = require('./app/routers/imageRouter');
 const stickerRouter = require('./app/routers/stickerRouter');
+const authentificationRouter = require('./app/routers/authentificationRouter'); 
 
 const session = require('express-session');
 
@@ -17,6 +19,8 @@ const express = require('express');
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -46,6 +50,7 @@ app.use(feedbackRouter);
 app.use(imageRouter);
 app.use(imageListRouter);
 app.use(stickerRouter);
+app.use(authentificationRouter);
 
 const port = process.env.PORT || 3000;
 
