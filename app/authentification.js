@@ -1,115 +1,103 @@
 const jwt = require('jsonwebtoken');
 const client = require('../app/dataMappers/client');
+const bcrypt = require('bcrypt');
 
+const jwtKey = process.env.ACCESS_TOKEN_SECRET
+const jwtExpirySeconds = 300
 
 module.exports = {
 
-        login: async function(req, res) {
+    login: async function(req, res) {
 
         const email = req.body.email;
         const password = req.body.password;
 
-        const user = await client.query(`SELECT * FROM "user" WHERE email = $1 AND password = $2;`, [email, password])
+        const user = await client.query(`SELECT * FROM "user" WHERE email = $1;`, [email]);
 
-            console.log('refresh', process.env.REFRESH_TOKEN_LIFE);
-            console.log('token', process.env.ACCESS_TOKEN_LIFE);
+        const hashUserPassword = user.rows[0].password;
 
         if(!user) {
-            res.status(401).send('L\'email ou le password sont incorrects');
+            res.status(401).send('L\'email est incorrects');
         } else {
 
-            let payload = {
-                            id : user.rows[0].id,
-                            email: user.rows[0].email,
-                            role : user.rows[0].role
-                        }
+            bcrypt.compare(password, hashUserPassword, async function(err, result) {
+                if(result !==true) {
+                    res.status(403).send('Il y a un problème avec le mot de passe');
+                } else {
+
+                    let payload = {
+                        id : user.rows[0].id,
+                        email: user.rows[0].email,
+                        role : user.rows[0].role
+                    }
+
+        
+                    let token = await jwt.sign(payload, jwtKey, {
+
+                            algorithm: "HS256",
+
+                            expiresIn: jwtExpirySeconds
+                    })
+
+                        res.header({"authtoken": token, "maxAge": jwtExpirySeconds * 1000 });
+                        res.send();
+                                
+                }
+            });
 
             
-            let accessToken = await jwt.sign(payload,
-                process.env.ACCESS_TOKEN_SECRET, {
-
-                    algorithm: "HS256",
-
-                    expiresIn: process.env.ACCESS_TOKEN_LIFE
-                })
-
-            let refreshToken = await jwt.sign(payload,
-                process.env.REFRESH_TOKEN_SECRET, {
-
-                    algorithm: "HS256",
-
-                    expiresIn: process.env.REFRESH_TOKEN_LIFE
-                })
-
-                let usertoken = {
-                    "id": user.rows[0].id,
-                    "email": user.rows[0].email,
-                    "role": user.rows[0].role
-                }
-
-                usertoken.refreshToken = refreshToken
-
-
-                res.header('authtoken', accessToken).send();
         }
+    },
+
+    verify: function(req, res, next){
+        let token = req.header.authtoken;
+
+        //if there is no token stored in cookies, the request is unauthorized
+        if (!token){
+            return res.status(401).end();
+        }
+
+        let payload;
+
+        try{
+            //use the jwt.verify method to verify the access token
+            //throws an error if the token has expired or has a invalid signature
+            payload = jwt.verify(token, jwtKey);
+        }
+        catch(e){
+            //if an error occured return request unauthorized error
+            return res.status(401).end();
+        };
     },
 
     refresh: function(req, res){
 
-        let accessToken = req.headers.authtoken;
+        const token = req.headers.authtoken;
 
-        console.log(accessToken);
-
-        if (!accessToken){
-            return res.status(403).send()
+        if (!token){
+            return res.status(401).end();
         }
 
-        let payload
+        let payload;
         
         try{
-            payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+            payload = jwt.verify(token, jwtKey);
 
-            console.log('Payload : ', payload);
         }
         catch(e){
-            console.log('ici 1er');
-            return res.status(401).send()
-        }
+            console.log(e);
+            return res.status(401).end();
+        };
 
-        let userRefreshToken = {
-            "id": payload.id,
-            "email": payload.email,
-            "role": payload.role,
-        }
 
-        console.log('userRefershToken : ', userRefreshToken);
-        //retrieve the refresh token from the users array
+        const newToken = jwt.sign({"id": payload.id, "role": payload.role, "email": payload.email}, jwtKey, {
 
-        let refreshToken;
-        
-        refreshToken.userRefreshToken = userRefreshToken;
-
-        console.log('refreshtoken', refreshToken);
-
-        
-
-        //verify the refresh token
-        try{
-            console.log('on est ici');
-            jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
-        }
-        catch(e){
-            console.log('2eme');
-            return res.status(401).send()
-        }
-
-        let newToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, 
-        {
             algorithm: "HS256",
-            expiresIn: process.env.ACCESS_TOKEN_LIFE
-        })
+            expiresIn: jwtExpirySeconds
+        });
 
-        res.header('authtoken', newToken).send()
+        res.header({"authtoken": newToken,  "maxAge": jwtExpirySeconds * 1000 });
+        res.end();
     }
 
 }

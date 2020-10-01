@@ -5,8 +5,8 @@ module.exports = {
     createProject: async function (req, res) {
         try{
             console.log(req.body);
-            await projectDataMapper.createProject(req.body);
-            res.status(201).send('Project created');
+            const project = await projectDataMapper.createProject(req.body);
+            res.json(project);
         } catch(error) {
             console.trace(error);
             res.status(500).json(error);
@@ -16,7 +16,7 @@ module.exports = {
     updateProject: async function (req, res) {
         try{
             const project = await projectDataMapper.updateProject(req.body);
-            res.status(200).send('Project updated');
+            res.json(project);
         } catch(error) {
             console.trace(error);
             res.status(500).json(error);

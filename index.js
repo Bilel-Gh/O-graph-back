@@ -10,7 +10,7 @@ const userRouter = require('./app/routers/userRouter');
 const commentListRouter = require('./app/routers/commentListRouter');
 const feedbackRouter = require('./app/routers/feedbackRouter');
 const imageRouter = require('./app/routers/imageRouter');
-const imageListRouter = require('./app/routers/imageRouter');
+const imageListRouter = require('./app/routers/imageListRouter');
 const stickerRouter = require('./app/routers/stickerRouter');
 const authentificationRouter = require('./app/routers/authentificationRouter'); 
 

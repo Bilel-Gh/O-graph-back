@@ -4,8 +4,9 @@ module.exports = {
 
     createImageList: async function(req, res) {
         try {
-            await imageListDataMapper.createImageList(req.body);
-            res.status(201).send('La liste d\'image a bien été créé');
+            const imageList = await imageListDataMapper.createImageList(req.body);
+            res.json(imageList);
+            // res.status(201).send('La liste d\'image a bien été créé');
         } catch(error){
             console.trace(error);
             res.status(500).json(error);

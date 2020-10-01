@@ -7,8 +7,8 @@ module.exports = {
 
         const result = await client.query(`
         INSERT INTO sticker ("image_id", "position_x", "position_y")
-        VALUES ($1, $2, $3);`, [data.image_id, data.position_x, data.position_y]);
-        return result.rows;
+        VALUES ($1, $2, $3) RETURNING *;`, [data.image_id, data.position_x, data.position_y]);
+        return result.rows[0];
     },
     // Récupération des stickers d'une image
     findStickers: async function(data){
@@ -21,7 +21,9 @@ module.exports = {
     // Changer l'état d'un sticker (Visible : true/false)
     stickerStateUpdate: async function(data){
 
-        await client.query(`UPDATE sticker SET visible = $1 WHERE id = $2;`, [data.visible, data.id]);
+        const result = await client.query(`
+        UPDATE sticker SET visible = $1 WHERE id = $2 RETURNING *;`, [data.visible, data.id]);
+        return result.rows[0];
     }
 
 
