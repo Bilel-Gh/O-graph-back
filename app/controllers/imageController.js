@@ -4,8 +4,8 @@ const imageDataMapper = require ('../dataMappers/imageDataMapper');
 module.exports = {
     insertImage: async function (req, res) {
         try {
-            await imageDataMapper.insertImage(req.body);
-            res.status(201).send('Image inserted');
+            const image = await imageDataMapper.insertImage(req.body);
+            res.json(image);
         } catch(error) {
             console.trace(error);
             res.status(500).json(error);

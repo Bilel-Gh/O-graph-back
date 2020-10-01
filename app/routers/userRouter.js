@@ -8,6 +8,8 @@ router.get('/users', userController.findUsers);
 router.get('/usersByRole', userController.findUserByRole);
 router.get('/userbyId', userController.findUserById);
 router.get('/usersByProjectId', userController.findUserByProjectId);
+router.post('/createUser', userController.createUser);
+router.patch('/updateUser', userController.updateUser);
 
 
 

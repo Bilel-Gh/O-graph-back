@@ -4,9 +4,10 @@ module.exports = {
 
     createImageList: async function(data) {
 
-        await client.query(`
+        const result = await client.query(`
         INSERT INTO image_list (feedback_id, name)
-        VALUES ('$1', '$2');`, [data.feedback_id, data.name]);
+        VALUES ($1, $2) RETURNING *;`, [data.feedback_id, data.name]);
+        return result.rows[0];
     },
 
 

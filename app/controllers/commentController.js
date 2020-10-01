@@ -4,8 +4,8 @@ module.exports = {
     
     createComment: async function(req, res){
         try {
-            await commentDataMapper.createComment(req.body);
-            res.status(201).send('Le commentaire a bien été créé');
+            const comment = await commentDataMapper.createComment(req.body);
+            res.json(comment);
         } catch(error){
             console.trace(error);
             res.status(500).json(error);

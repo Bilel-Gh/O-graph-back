@@ -5,8 +5,8 @@ module.exports = {
     newFeedback: async function(req, res) {
 
         try {
-            await feedbackDataMapper.newFeedback(req.body);
-            res.status(201).send('Le feedback a bien été créé');
+            const feedback = await feedbackDataMapper.newFeedback(req.body);
+            res.json(feedback);
         } catch(error){
             console.trace(error);
             res.status(500).json(error);
@@ -27,7 +27,7 @@ module.exports = {
     updateFeedback: async function(req, res) {
         try {
             const feedback = await feedbackDataMapper.updateFeedback(req.body);
-            res.status(200).send('Le feedback a bien été modifié');
+            res.json(feedback);
         } catch(error){
             console.trace(error);
             res.status(500).json(error);

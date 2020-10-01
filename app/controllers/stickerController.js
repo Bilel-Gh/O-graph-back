@@ -3,8 +3,8 @@ const stickerDataMapper = require('../dataMappers/stickerDataMapper');
 module.exports = {
     createNewSticker: async function(req, res) {
         try {
-            await stickerDataMapper.createNewSticker(req.body);
-            res.status(201).send('Le sticker a bien été créé');
+            const sticker = await stickerDataMapper.createNewSticker(req.body);
+            res.json(sticker);
         } catch(error){
             console.trace(error);
             res.status(500).json(error);
@@ -24,8 +24,8 @@ module.exports = {
 
     stickerStateUpdate: async function (req, res) {
         try {
-            await stickerDataMapper.stickerStateUpdate(req.body);
-            res.status(201).send('Le sticker a bien été modifié');
+            const sticker = await stickerDataMapper.stickerStateUpdate(req.body);
+            res.json(sticker);
         } catch(error){
             console.trace(error);
             res.status(500).json(error);
