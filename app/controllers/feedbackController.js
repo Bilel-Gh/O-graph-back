@@ -16,7 +16,7 @@ module.exports = {
     findFeedbackByprojectId: async function(req, res) {
 
         try {
-            const feedback = await feedbackDataMapper.findFeedbackByprojectId(req.body);
+            const feedback = await feedbackDataMapper.findFeedbackByprojectId(req.params);
             res.json(feedback);
         } catch(error){
             console.trace(error);

@@ -15,6 +15,6 @@ router.post('/uploadimage', multer.single('file'), function(req, res, next) {
     }
     res.json({ image_url: 'localhost:3000/public/images/' + req.file.filename });
 });
-router.get('/imageByListImageId', imageController.findImageByListImageId);
+router.get('/imageByListImageId/:listImageId', imageController.findImageByListImageId);
 
 module.exports = router;

@@ -17,7 +17,7 @@ module.exports = {
 
     findImageListByFeedbackId: async function(req, res) {
         try {
-            const imageList = await imageListDataMapper.findImageListByFeedbackId(req.body);
+            const imageList = await imageListDataMapper.findImageListByFeedbackId(req.params);
             res.json(imageList);
         } catch(error){
             console.trace(error);

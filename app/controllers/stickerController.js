@@ -13,7 +13,7 @@ module.exports = {
 
     findStickers: async function (req, res) {
         try{
-            const stickers = await stickerDataMapper.findStickers(req.body);
+            const stickers = await stickerDataMapper.findStickers(req.params);
             res.json(stickers);
         } catch(error){
             console.trace(error);

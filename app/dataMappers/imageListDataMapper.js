@@ -11,9 +11,9 @@ module.exports = {
     },
 
 
-    findImageListByFeedbackId: async function(feedbackId) {
+    findImageListByFeedbackId: async function(data) {
 
-        const result = await client.query(`SELECT * FROM image_list WHERE feedback_id = $1;`, [feedbackId]);
+        const result = await client.query(`SELECT * FROM image_list WHERE feedback_id = $1;`, [data.feedbackId]);
         return result.rows;
     }
 

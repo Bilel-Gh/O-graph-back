@@ -5,9 +5,9 @@ const projectController = require('../controllers/projectController');
 const router = express.Router();
 
 router.post('/createProject', projectController.createProject);
-router.post('/updateProject', projectController.updateProject);
-router.get('/project', projectController.findProjectByUserId);
-router.get('/searchProject', projectController.searchProject);
+router.patch('/updateProject', projectController.updateProject);
+router.get('/projectByUserId/:userId', projectController.findProjectByUserId);
+router.get('/searchProject/:search', projectController.searchProject);
 
 
 module.exports = router;

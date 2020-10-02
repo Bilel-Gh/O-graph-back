@@ -15,7 +15,7 @@ module.exports = {
 
     findUserByRole: async function(req, res) {
         try {
-            const users = await userDataMapper.findUserByRole(req.body);
+            const users = await userDataMapper.findUserByRole(req.params);
             res.json(users);
         } catch(error){
             console.trace(error);
@@ -26,7 +26,7 @@ module.exports = {
 
     findUserById: async function(req, res) {
         try {
-            const user = await userDataMapper.findUserById(req.body);
+            const user = await userDataMapper.findUserById(req.params);
             res.json(user);
         } catch(error){
             console.trace(error);
@@ -36,7 +36,7 @@ module.exports = {
 
     findUserByProjectId: async function(req, res) {
         try {
-            const users = await userDataMapper.findUserByProjectId(req.body);
+            const users = await userDataMapper.findUserByProjectId(req.params);
             res.json(users);
         } catch(error){
             console.trace(error);

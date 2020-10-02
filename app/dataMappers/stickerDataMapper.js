@@ -12,9 +12,8 @@ module.exports = {
     },
     // Récupération des stickers d'une image
     findStickers: async function(data){
-
         const result = await client.query(`
-        SELECT * FROM sticker WHERE image_id = $1;`, [data.image_id]);
+        SELECT * FROM sticker WHERE image_id = $1;`, [data.imageId]);
         return result.rows;
     },
 

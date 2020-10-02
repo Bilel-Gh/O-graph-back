@@ -7,6 +7,6 @@ const router = express.Router();
 
 
 router.post('/newCommentList', commentListController.createCommentList);
-router.post('/commentListByStickerId', commentListController.findCommentList);
+router.get('/commentListByStickerId/:stickerId', commentListController.findCommentList);
 
 module.exports = router;

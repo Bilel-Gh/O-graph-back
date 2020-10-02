@@ -11,9 +11,9 @@ module.exports = {
     },
 
 
-    findImageByListImageId: async function(listImageID) {
+    findImageByListImageId: async function(data) {
 
-        const result  = await client.query(`SELECT * FROM image WHERE list_image_id = $1;`, [listImageID]);
+        const result  = await client.query(`SELECT * FROM image WHERE list_image_id = $1;`, [data.listImageId]);
         return result.rows;
     }
 

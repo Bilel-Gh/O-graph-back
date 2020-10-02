@@ -22,12 +22,12 @@ module.exports = {
         const result = await client.query(`
             SELECT * FROM project JOIN user_has_project 
                 ON user_has_project.project_id = project.id 
-                WHERE user_has_project.user_id = $1`, [data.user_id]);
+                WHERE user_has_project.user_id = $1`, [data.userId]);
         return result.rows;
     },
 
     // Récupération du/des projet en fonction d'une recherche
-    searchProject: async function(searchString){
+    searchProject: async function(search){
 
         const result = await client.query(`
             SELECT project.*
@@ -37,7 +37,7 @@ module.exports = {
             WHERE LOWER(first_name) LIKE $1
             OR LOWER(last_name) LIKE $1
             OR LOWER(company_name) LIKE $1
-            OR LOWER(project.name) LIKE $1;`, ['%' + searchString + '%']);
+            OR LOWER(project.name) LIKE $1;`, ['%' + search + '%']);
         return result.rows;
     }
 
