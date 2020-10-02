@@ -14,7 +14,7 @@ module.exports = {
 
     findComment: async function(req, res){
         try {
-            const comments = await commentDataMapper.findComment(req.body);
+            const comments = await commentDataMapper.findComment(req.params);
             res.json(comments);
         } catch(error){
             console.trace(error);

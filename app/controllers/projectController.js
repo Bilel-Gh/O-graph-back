@@ -25,7 +25,7 @@ module.exports = {
 
     findProjectByUserId: async function(req, res) {
         try{
-            const project = await projectDataMapper.findProjectByUserId(req.body);
+            const project = await projectDataMapper.findProjectByUserId(req.params);
             res.json(project);
         } catch(error) {
             console.trace(error);
@@ -36,7 +36,7 @@ module.exports = {
 
     searchProject: async function(req, res) {
         try {
-            const search = await projectDataMapper.searchProject(req.body.searchString.toLowerCase());
+            const search = await projectDataMapper.searchProject(req.params.search.toLowerCase());
             res.json(search);
         } catch(error) {
             console.trace(error);

@@ -11,12 +11,8 @@ Content-Type: application/json
 }
 
 ### Afficher les commentaires d'une liste de commentaires 
-POST http://localhost:3000/comment
-Content-Type: application/json
+GET http://localhost:3000/comment/3
 
-{
-    "list_comment_id": 4
-}
 
 
 #### PROJECT
@@ -30,7 +26,7 @@ Content-Type: application/json
 }
 
 ### Modifier un projet
-POST http://localhost:3000/updateProject
+PATCH  http://localhost:3000/updateProject
 Content-Type: application/json
 
 {
@@ -40,21 +36,13 @@ Content-Type: application/json
 }
 
 ### Afficher le/les projet d'un user
-GET http://localhost:3000/project
-Content-Type: application/json
+GET http://localhost:3000/projectByUserId/3
 
-{
-    "user_id": 3
-}
 
 
 ### Affiche le/les projets en fonction de la recherche
-GET http://localhost:3000/searchProject
-Content-Type: application/json
+GET http://localhost:3000/searchProject/ilvoc
 
-{
-    "searchString": "ILVOC"
-}
 
 
 ### Login
@@ -74,29 +62,17 @@ GET http://localhost:3000/users
 
 
 ### affiche les utilisateurs par leurs rôle
-POST http://localhost:3000/usersByRole
-Content-Type: application/json
+GET http://localhost:3000/usersByRole/graphiste
 
-{
-    "role": "graphiste"
-}
 
 
 ### Affiche les utilisateurs par leurs id
-POST http://localhost:3000/userById
-Content-Type: application/json
+GET http://localhost:3000/userById/1
 
-{
-    "id": 1
-}
 
 ### Affiche les utilisateurs en fonction de leur(s) projet(s)
-POST http://localhost:3000/usersByProjectId
-Content-Type: application/json
+GET http://localhost:3000/usersByProjectId/2
 
-{
-    "project_id": 2
-}
 
 
 ### Création d'un nouvel utilisateur
@@ -142,12 +118,8 @@ Content-Type: application/json
 }
 
 ### Affiche les commentaires liées à un sticker
-GET http://localhost:3000/commentListByStickerId
-Content-Type: application/json
+GET http://localhost:3000/commentListByStickerId/5
 
-{
-    "sticker_id": 5
-}
 
 
 #### FEEDBACK
@@ -172,12 +144,8 @@ Content-Type: application/json
 }
 
 ### Affiche le/les feedback(s) d'un projet
-GET http://localhost:3000/feedbackByProjectId
-Content-Type: application/json
+GET http://localhost:3000/feedbackByProjectId/5
 
-{
-    "project_id": 5
-}
 
 #### IMAGE
 
@@ -199,12 +167,8 @@ POST http://localhost:3000/uploadImage
 ###  enctype="multipart/form-data → Voir avec nous.
 
 ### Affiche les images en fonction de l'id de leurs list d'image
-GET http://localhost/imageByListImageId
-Content-Type: application/json
+GET http://localhost:3000/imageByListImageId/3
 
-{
-    "list_image_id": 2
-}
 
 
 #### IMAGELIST
@@ -219,12 +183,8 @@ Content-Type: application/json
 }
 
 ### Affiche la/les liste(s) d'image liées à l'id du feedback
-GET http://localhost:3000/imageListByFeedbackId
-Content-Type: application/json
+GET http://localhost:3000/imageListByFeedbackId/1
 
-{
-    "feedback_id": 1
-}
 
 
 #### STICKER
@@ -240,12 +200,8 @@ Content-Type: application/json
 }
 
 ### Afficher les sticker liées à une image
-GET http://localhost:3000/findstickers
-Content-Type: application/json
+GET http://localhost:3000/findstickers/5
 
-{
-    "image_id": 2
-}
 
 ### Modifier l'état d'un sticker
 PATCH http://localhost:3000/stickerstateupdate

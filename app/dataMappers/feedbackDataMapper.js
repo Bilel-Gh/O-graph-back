@@ -12,7 +12,7 @@ module.exports = {
 
     findFeedbackByprojectId: async function(data) {
 
-        const result = await client.query(`SELECT * FROM feedback WHERE project_id = $1;`, [data.project_id]);
+        const result = await client.query(`SELECT * FROM feedback WHERE project_id = $1;`, [data.projectId]);
         return result.rows;
     },
 

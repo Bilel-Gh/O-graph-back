@@ -20,7 +20,7 @@ module.exports = {
     // Récupération des utilisateur par leurs id
     findUserById: async function(data) {
 
-        const result = await client.query('SELECT * FROM user_without_password WHERE id = $1;', [data.id]);
+        const result = await client.query('SELECT * FROM user_without_password WHERE user_id = $1;', [data.userId]);
         return result.rows[0];
     },
 
@@ -30,7 +30,7 @@ module.exports = {
         const result = await client.query(`
             SELECT * FROM user_without_password JOIN user_has_project 
                 ON user_has_project.user_id = user_without_password.user_id 
-                WHERE user_has_project.project_id = $1;`, [data.project_id]);
+                WHERE user_has_project.project_id = $1;`, [data.projectId]);
         return result.rows;
     },
 

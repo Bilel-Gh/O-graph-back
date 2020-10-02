@@ -17,7 +17,7 @@ module.exports = {
         FROM comment 
         JOIN "user" ON "user".id = comment.user_id
         WHERE list_comment_id = $1;`,
-            [data.list_comment_id]);
+            [data.commentListId]);
         return result.rows;
     }
 

@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.post('/newComment', commentController.createComment);
-router.post('/comment', commentController.findComment);
+router.get('/comment/:commentListId', commentController.findComment);
 
 
 module.exports = router;
