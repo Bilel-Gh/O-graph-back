@@ -16,9 +16,14 @@ const authentificationRouter = require('./app/routers/authentificationRouter');
 
 const session = require('express-session');
 
+
 const express = require('express');
 
 const app = express();
+
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
 
 app.use(cors('*'));
 
@@ -55,8 +60,11 @@ app.use(imageListRouter);
 app.use(stickerRouter);
 app.use(authentificationRouter);
 
+
+require('./app/socket.io')(io);
+
 const port = process.env.PORT || 3000;
 
-app.listen(port, _ => {
+server.listen(port, _ => {
    console.log(`http://localhost:${port}`);
 });

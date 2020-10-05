@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 module.exports = {
 
-    userSchema: Joi.object({
+    createUserSchema: Joi.object({
 
         role: Joi.string().valid('client', 'graphiste', 'admin').required(),
 
@@ -23,6 +23,22 @@ module.exports = {
         
     }),
 
+    updateUserSchema: Joi.object({
+
+        password: Joi.string().required()
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+
+        first_name: Joi.string().empty(''),
+
+        last_name: Joi.string().empty(''),
+
+        company_name: Joi.string().empty(''),
+
+        image: Joi.string().empty(''),
+
+        id: Joi.number()
+    }),
+
     commentSchema: Joi.object({
 
         text: Joi.string(),
@@ -35,6 +51,15 @@ module.exports = {
     createProjectSchema: Joi.object({
 
         name: Joi.string()
+    }),
+
+    updateProjectSchema: Joi.object({
+
+        name: Joi.string(),
+
+        statut: Joi.string(),
+
+        project_id: Joi.number()
     }),
 
     loginSchema: Joi.object({
@@ -60,6 +85,13 @@ module.exports = {
         user_id: Joi.number(),
 
         name: Joi.string()
-    })
+    }),
+
+    newImageListSchema: Joi.object({
+
+        feedback_id: Joi.number(),
+
+        name: Joi.string()
+    }),
 
 }
