@@ -1,0 +1,65 @@
+const Joi = require('joi');
+
+module.exports = {
+
+    userSchema: Joi.object({
+
+        role: Joi.string().valid('client', 'graphiste', 'admin').required(),
+
+        email: Joi.string().required()
+            .email({ minDomainSegments: 2, tlds: {allow: ['com', 'net', 'fr', 'io']}}),
+
+        password: Joi.string().required()
+            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+
+        first_name: Joi.string().empty(''),
+
+        last_name: Joi.string().empty(''),
+
+        company_name: Joi.string().empty(''),
+
+        image: Joi.string().empty('')
+
+        
+    }),
+
+    commentSchema: Joi.object({
+
+        text: Joi.string(),
+
+        List_comment_id: Joi.number(),
+
+        user_id: Joi.number()
+    }),
+
+    createProjectSchema: Joi.object({
+
+        name: Joi.string()
+    }),
+
+    loginSchema: Joi.object({
+
+        email: Joi.string().required()
+        .email({ minDomainSegments: 2, tlds: {allow: ['com', 'net', 'fr', 'io']}}),
+
+        password: Joi.string().required()
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+    }),
+
+    newCommentListSchema: Joi.object({
+
+        sticker_id: Joi.number(),
+
+        name: Joi.string()
+    }),
+
+    newFeedbackSchema: Joi.object({
+
+        project_id: Joi.number(),
+
+        user_id: Joi.number(),
+
+        name: Joi.string()
+    })
+
+}
