@@ -1,5 +1,7 @@
 const express = require('express');
 
+const cache = require('../cache');
+
 const imageListController = require('../controllers/imageListController')
 
 const { newImageListSchema } = require('../validations/schema');
@@ -7,7 +9,13 @@ const { validateBody } = require('../validations/validate');
 
 const router = express.Router();
 
-router.post('/newImageList', validateBody(newImageListSchema), imageListController.createImageList);
-router.get('/imageListByFeedbackId/:feedbackId', imageListController.findImageListByFeedbackId);
+router.post('/newImageList', validateBody(newImageListSchema), _ => {
+        cache.del('*', function (err, number) {
+            console.log(`${number} caches have been deleted`);
+        })
+    },
+    imageListController.createImageList);
+    
+router.get('/imageListByFeedbackId/:feedbackId', cache.route(), imageListController.findImageListByFeedbackId);
 
 module.exports = router;

@@ -80,10 +80,10 @@ Content-Type: application/json
 
 {
     "role": "graphiste",
-    "email": "albert@gmail.com",
-    "password": "AlbertDusixneuf",
-    "first_name": "Albert",
-    "last_name": "ALBERT",
+    "email": "alberto69@gmail.com",
+    "password": "AlbertoDusixneuf",
+    "first_name": "Alberto",
+    "last_name": "ALBERTO",
     "company_name": "",
     "image": ""
 }
@@ -96,7 +96,7 @@ Content-Type: application/json
 {
     "password":" micheal",
     "first_name": "Michael",
-    "last_name": "Jordan",
+    "last_name": "JORDAN",
     "company_name": "",
     "image": "",
     "id": 3
