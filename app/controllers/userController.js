@@ -55,6 +55,16 @@ module.exports = {
         }
     },
 
+    updateUserPassword: async function(req, res) {
+        try {
+            const user = await userDataMapper.updateUser(req.body);
+            res.json(user);
+        } catch(error){
+            console.trace(error);
+            res.status(500).json(error);
+        }
+    },
+
     updateUser: async function(req, res) {
         try {
             const user = await userDataMapper.updateUser(req.body);

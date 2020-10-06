@@ -6,7 +6,7 @@ module.exports = {
 
     findUsers: async function() {
 
-        const result = await client.query('SELECT * FROM "user";');
+        const result = await client.query('SELECT * FROM user_without_password;');
         return result.rows;
     },
 
@@ -51,18 +51,26 @@ module.exports = {
         });
     },
 
-    updateUser: async function(data) {
+    updateUserPassword: async function(data) {
 
         bcrypt.genSalt(saltRounds, (err, salt) => {
             
             bcrypt.hash(data.password, salt, async function(err, hash) {
 
                 const result = await client.query(`
-                UPDATE "user" SET password = $1, first_name = $2, last_name = $3, company_name = $4, image = $5
-                WHERE id = $6 RETURNING *;`, [hash, data.first_name, data.last_name, data.company_name, data.image, data.id]);
+                UPDATE "user" SET password = $1
+                WHERE id = $2 RETURNING *;`, [hash, data.id]);
                 return result.rows[0];
             });
 
         });
-    }    
+    },
+    
+    updateUser: async function(data) {
+
+        const result = await client.query(`
+        UPDATE "user" SET first_name = $1, last_name = $2, company_name = $3, image = $4
+        WHERE id = $5 RETURNING *;`, [data.first_name, data.last_name, data.company_name, data.image, data.id]);
+        return result.rows[0];
+    }
 };

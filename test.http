@@ -89,16 +89,24 @@ Content-Type: application/json
 }
 
 
-### Update d'un utilisateur
-PATCH http://localhost:3000/updateUser
+### Update du password d'un utilisateur
+PATCH http://localhost:3000/updateUserPassword
 Content-Type: application/json
 
 {
     "password":" micheal",
-    "first_name": "Michael",
-    "last_name": "JORDAN",
-    "company_name": "",
-    "image": "",
+    "id": 3
+}
+
+### Update des informations d'un utilisateur
+PATCH http://localhost:3000/updateUserPassword
+Content-Type: application/json
+
+{
+    "first_name":
+    "last_name":
+    "company_name":
+    "image":
     "id": 3
 }
 

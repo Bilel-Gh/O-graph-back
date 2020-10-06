@@ -17,16 +17,21 @@ router.post('/createUser', validateBody(createUserSchema), _ => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
-    }, 
-    
+    },  
     userController.createUser);
+
+router.patch('/updateUserPassword', validateBody(updateUserSchema),  _ => {
+        cache.del('*', function (err, number) {
+            console.log(`${number} caches have been deleted`);
+        })
+    },
+    userController.updateUserPassword);
 
 router.patch('/updateUser', validateBody(updateUserSchema),  _ => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
     },
-    
     userController.updateUser);
 
 module.exports = router;
