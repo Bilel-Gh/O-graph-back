@@ -80,8 +80,8 @@ Content-Type: application/json
 
 {
     "role": "graphiste",
-    "email": "alberto69@gmail.com",
-    "password": "AlbertoDusixneuf",
+    "email": "albertoSixNeuf@gmail.com",
+    "password": "AlbertoDu69",
     "first_name": "Alberto",
     "last_name": "ALBERTO",
     "company_name": "",
@@ -94,12 +94,12 @@ PATCH http://localhost:3000/updateUserPassword
 Content-Type: application/json
 
 {
-    "password":" micheal",
-    "id": 3
+    "password":"AlbertoDuSixNeuf",
+    "id": 21
 }
 
 ### Update des informations d'un utilisateur
-PATCH http://localhost:3000/updateUserPassword
+PATCH http://localhost:3000/updateUser
 Content-Type: application/json
 
 {

@@ -9,17 +9,19 @@ const { validateBody } = require('../validations/validate')
 
 const router = express.Router();
 
-router.post('/createProject', validateBody(createProjectSchema), _ => {
+router.post('/createProject', validateBody(createProjectSchema), (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
+        next();
     },
     projectController.createProject);
 
-router.patch('/updateProject', validateBody(updateProjectSchema), _ => {
+router.patch('/updateProject', validateBody(updateProjectSchema), (_,res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
+        next();
     },
     projectController.updateProject);
 

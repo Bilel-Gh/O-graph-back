@@ -4,15 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
 
-const commentRouter = require('./app/routers/commentRouter');
-const projectRouter = require('./app/routers/projectRouter');
-const userRouter = require('./app/routers/userRouter');
-const commentListRouter = require('./app/routers/commentListRouter');
-const feedbackRouter = require('./app/routers/feedbackRouter');
-const imageRouter = require('./app/routers/imageRouter');
-const imageListRouter = require('./app/routers/imageListRouter');
-const stickerRouter = require('./app/routers/stickerRouter');
-const authentificationRouter = require('./app/routers/authentificationRouter'); 
+const { commentRouter, projectRouter, userRouter, commentListRouter, feedbackRouter, imageRouter, imageListRouter, stickerRouter, authentificationRouter } = require('./app/routers/index.js');
 
 const session = require('express-session');
 
@@ -20,6 +12,40 @@ const session = require('express-session');
 const express = require('express');
 
 const app = express();
+
+const expressSwagger = require('express-swagger-generator')(app);
+
+
+let options = {
+  swaggerDefinition: {
+      info: {
+          description: 'This is a O\'graph server',
+          title: 'O\'graph',
+          version: '1.0.0',
+      },
+      host: 'localhost:3000',
+      produces: [
+          "application/json",
+      ],
+      schemes: ['http', 'https'],
+      securityDefinitions: {}
+  },
+  basedir: __dirname, //app absolute path
+  files: [
+    './app/routers/commentRouter.js',
+    './app/routers/projectRouter.js',
+    './app/routers/userRouter.js',
+    './app/routers/commentListRouter.js',
+    './app/routers/feedbackRouter.js',
+    './app/routers/imageRouter.js',
+    './app/routers/imageListRouter.js',
+    './app/routers/stickerRouter.js',
+    './app/routers/authentificationRouter.js'
+  ] //Path to the API handle folder
+};
+expressSwagger(options);
+
+//http://localhost:3000/api-docs
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -43,15 +69,7 @@ app.use(
    })
  );
 
-app.use(commentRouter);
-app.use(projectRouter);
-app.use(userRouter);
-app.use(commentListRouter);
-app.use(feedbackRouter);
-app.use(imageRouter);
-app.use(imageListRouter);
-app.use(stickerRouter);
-app.use(authentificationRouter);
+app.use(commentRouter, projectRouter, userRouter, commentListRouter, feedbackRouter, imageRouter, imageListRouter, stickerRouter, authentificationRouter);
 
 
 require('./app/socket.io')(io);
