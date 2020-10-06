@@ -42,13 +42,6 @@ app.use(
      cookie: { secure: false },
    })
  );
- 
-//  app.use((req, res, next) => {
-//    console.log('=== SESSION CHECKER ===');
-//    console.table(req.session);
-//    console.log('=== END OF SESSION CHECKER ===');
-//    next();
-//  });
 
 app.use(commentRouter);
 app.use(projectRouter);
