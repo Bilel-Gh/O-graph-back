@@ -14,7 +14,7 @@ router.post('/uploadimage', multer.single('file'), function(req, res, next) {
       res.status(500);
       return next();
     }
-    res.json({ image_url: `localhost:${process.env.PORT}/public/images/` + req.file.filename });
+    res.json({ image_url: `http://localhost:${process.env.PORT}/public/images/` + req.file.filename });
 });
 router.get('/imageByListImageId/:listImageId', imageController.findImageByListImageId);
 
