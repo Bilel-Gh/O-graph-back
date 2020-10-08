@@ -13,6 +13,8 @@ const express = require('express');
 
 const app = express();
 
+app.use('/public/images', express.static('public/images'));
+
 const expressSwagger = require('express-swagger-generator')(app);
 
 
