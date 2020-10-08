@@ -25,8 +25,21 @@ router.patch('/updateProject', validateBody(updateProjectSchema), (_,res, next) 
     },
     projectController.updateProject);
 
-router.get('/projectByUserId/:userId', cache.route(), projectController.findProjectByUserId);
-router.get('/searchProject/:search', cache.route(), projectController.searchProject);
+router.get('/projectByUserId/:userId',
+    function (req, res, next) {
+        // set cache name
+        res.express_redis_cache_name = 'projectByUserId-' + req.params.userId;
+        next();
+    }, 
+    cache.route(), projectController.findProjectByUserId);
+
+router.get('/searchProject/:search',
+    function (req, res, next) {
+        // set cache name
+        res.express_redis_cache_name = 'searchProject-' + req.params.search;
+        next();
+    },
+    cache.route(), projectController.searchProject);
 
 
 module.exports = router;
