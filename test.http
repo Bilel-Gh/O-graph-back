@@ -5,7 +5,7 @@ POST http://localhost:3000/newComment
 Content-Type: application/json
 
 {
-    "text": "ceci est encore un commentaire",
+    "text": "Ceci est encore un nouveau commentaire",
     "list_comment_id": 3,
     "user_id": 5
 }
@@ -49,8 +49,8 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "jp3@sfr.fr",
-    "password": "12345678"
+    "email": "albert000@gmail.com",
+    "password": "Albert000"
 }
 
 
@@ -215,6 +215,6 @@ PATCH http://localhost:3000/stickerstateupdate
 Content-Type: application/json
 
 {
-    "visible": "true", 
-    "id": 1 
+    "visible": "false", 
+    "id": 16
 }

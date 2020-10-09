@@ -1,0 +1,535 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "O'graph",
+        "description": "O'graph API" 
+    },
+    "host": "localhost:3000",
+    "tags": [{
+        "name": "Users"
+    }],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    
+
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/usersByRole/{role}": {
+            "parameters": [
+                {
+                    "name": "role",
+                    "in": "path",
+                    "required": true,
+                    "description": "role of the user's",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users with given role",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/userById/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "id of the user's",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users with given id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/usersByProjectId/{projectId}": {
+            "parameters": [
+                {
+                    "name": "projectId",
+                    "in": "path",
+                    "required": true,
+                    "description": "id of the project",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users with given project id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+
+        "/createUser": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "user info"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create new User",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/updateUserPassword": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "new user password"
+                }
+            ],
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user password",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+
+        "/updateUser": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "new user info"
+                }
+            ],
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user info",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/createNewSticker": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "sticker info"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Stickers"
+                ],
+                "summary": "Create new Sticker",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        
+        "/findstickers/{imageId}": {
+            "parameters": [
+                {
+                    "name": "imageId",
+                    "in": "path",
+                    "required": true,
+                    "description": "image Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Stickers"
+                ],
+                "summary": "Get sticker with given image Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        
+        "/stickerstateupdate": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "new sticker state"
+                }
+            ],
+            "patch": {
+                "tags": [
+                    "Stickers"
+                ],
+                "summary": "Update sticker state",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/createProject": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New project info"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Create new Project",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/updateProject": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New project info"
+                }
+            ],
+            "patch": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Update project info",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/projectByUserId/{userId}": {
+            "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "user Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Get project with given user Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/searchProject/{search}": {
+            "parameters": [
+                {
+                    "name": "search",
+                    "in": "path",
+                    "required": true,
+                    "description": "search Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Get projects with a search string",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/newImageList": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New imageList"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "ImageList"
+                ],
+                "summary": "Create new Image List",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/imageListByFeedbackId/{feedbackId}": {
+            "parameters": [
+                {
+                    "name": "feedbackId",
+                    "in": "path",
+                    "required": true,
+                    "description": "feedback Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "ImageList"
+                ],
+                "summary": "Get images List with a feedback Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/newFeedback": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New feedback"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Feedback"
+                ],
+                "summary": "Create new New feedback",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        
+        "/updateFeedback": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New feedback info"
+                }
+            ],
+            "patch": {
+                "tags": [
+                    "Feedback"
+                ],
+                "summary": "Update feedback info with given Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/feedbackByProjectId/{projectId}": {
+            "parameters": [
+                {
+                    "name": "projectId",
+                    "in": "path",
+                    "required": true,
+                    "description": "projectId Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Feedback"
+                ],
+                "summary": "Get feeback with a project Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/newComment": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New comment"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Create new New comment",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/comment/{commentListId}": {
+            "parameters": [
+                {
+                    "name": "commentListId",
+                    "in": "path",
+                    "required": true,
+                    "description": "comment List Id"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get comment with given comment List Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/newCommentList": {
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "description": "New commentList"
+                }
+            ],
+            "post": {
+                "tags": [
+                    "CommentList"
+                ],
+                "summary": "Create new New comment list",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+
+        "/commentListByStickerId/{stickerId}": {
+            "parameters": [
+                {
+                    "name": "stickerId",
+                    "in": "path",
+                    "required": true,
+                    "description": "stickerId"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "CommentList"
+                ],
+                "summary": "Get comment list with given sticker Id",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+
+    
+         
+        
+}

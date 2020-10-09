@@ -39,13 +39,11 @@ module.exports = {
                             expiresIn: jwtExpirySeconds
                     })
 
-                        res.header({"authtoken": token, "maxAge": jwtExpirySeconds * 1000 });
+                        res.header({"authtoken": token, "role": user.rows[0].role,"maxAge": jwtExpirySeconds * 1000 });
                         res.send();
                                 
                 }
             });
-
-            
         }
     },
 

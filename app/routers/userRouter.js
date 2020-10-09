@@ -9,21 +9,8 @@ const { validateBody } = require('../validations/validate')
 
 const router = express.Router();
 
-/**
- * @route GET /users
- * @return {object} 200 - An array of users info
- * @return {error} default - Unexpected error
- * @security JWT
- */
 router.get('/users', cache.route('users'), userController.findUsers);
 
-/**
- * @route GET /usersByRole/{role}
- * @param {string} role - user's role
- * @return {object} 200 - An array of users info
- * @return {error} default - Unexpected error
- * @security JWT
- */
 router.get('/usersByRole/:role',function (req, res, next) {
         // set cache name
         res.express_redis_cache_name = 'userByRole-' + req.params.role;

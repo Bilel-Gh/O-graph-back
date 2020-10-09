@@ -25,8 +25,8 @@ module.exports = {
 
     updateUserSchema: Joi.object({
 
-        password: Joi.string().required()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+        // password: Joi.string().required()
+        // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 
         first_name: Joi.string().empty(''),
 
@@ -43,7 +43,7 @@ module.exports = {
 
         text: Joi.string(),
 
-        List_comment_id: Joi.number(),
+        list_comment_id: Joi.number(),
 
         user_id: Joi.number()
     }),
