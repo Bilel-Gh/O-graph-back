@@ -15,39 +15,10 @@ const app = express();
 
 app.use('/public/images', express.static('public/images'));
 
-const expressSwagger = require('express-swagger-generator')(app);
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
-
-let options = {
-  swaggerDefinition: {
-      info: {
-          description: 'This is a O\'graph server',
-          title: 'O\'graph',
-          version: '1.0.0',
-      },
-      host: 'localhost:3000',
-      produces: [
-          "application/json",
-      ],
-      schemes: ['http', 'https'],
-      securityDefinitions: {}
-  },
-  basedir: __dirname, //app absolute path
-  files: [
-    './app/routers/commentRouter.js',
-    './app/routers/projectRouter.js',
-    './app/routers/userRouter.js',
-    './app/routers/commentListRouter.js',
-    './app/routers/feedbackRouter.js',
-    './app/routers/imageRouter.js',
-    './app/routers/imageListRouter.js',
-    './app/routers/stickerRouter.js',
-    './app/routers/authentificationRouter.js'
-  ] //Path to the API handle folder
-};
-expressSwagger(options);
-
-//http://localhost:3000/api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
