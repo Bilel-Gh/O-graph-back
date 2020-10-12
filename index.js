@@ -24,7 +24,12 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 
-app.use(cors('*'));
+app.use(cors({
+  'allowedHeaders': ['authtoken', 'Content-Type'],
+  'exposedHeaders': ['authtoken', 'role', 'maxAge'],
+  'origin': '*',
+  'method': 'GET,HEAD,PUT,PATCH,POST,DELETE'
+}));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
