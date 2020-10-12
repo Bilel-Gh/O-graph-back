@@ -2,7 +2,7 @@ const express = require('express');
 
 const cache = require('../cache');
 
-const { verify } = require('../authentification')
+const { verify } = require('../authentification');
 
 const userController = require('../controllers/userController');
 
@@ -11,51 +11,51 @@ const { validateBody } = require('../validations/validate')
 
 const router = express.Router();
 
-router.get('/users', cache.route('users'), verify, userController.findUsers);
+router.get('/users', verify, cache.route('users'), userController.findUsers);
 
-router.get('/usersByRole/:role',function (req, res, next) {
+router.get('/usersByRole/:role', verify, function (req, res, next) {
         // set cache name
         res.express_redis_cache_name = 'userByRole-' + req.params.role;
         next();
     }, 
-    cache.route(), verify, userController.findUserByRole);
+    cache.route(), userController.findUserByRole);
 
-router.get('/userbyId/:userId', function (req, res, next) {
+router.get('/userbyId/:userId', verify, function (req, res, next) {
         // set cache name
         res.express_redis_cache_name = 'userById-' + req.params.userId;
         next();
     }, 
-    cache.route(), verify, userController.findUserById);
+    cache.route(),userController.findUserById);
 
-router.get('/usersByProjectId/:projectId', function (req, res, next) {
+router.get('/usersByProjectId/:projectId',  verify, function (req, res, next) {
         // set cache name
         res.express_redis_cache_name = 'userByProjectId-' + req.params.projectId;
         next();
     }, 
-    cache.route(), verify, userController.findUserByProjectId);
+    cache.route(),userController.findUserByProjectId);
 
-router.post('/createUser', validateBody(createUserSchema), (_, res, next) => {
+router.post('/createUser', validateBody(createUserSchema), verify, (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
         next();
     },  
-    verify, userController.createUser);
+    userController.createUser);
 
-router.patch('/updateUserPassword', validateBody(updateUserSchema),  (_, res, next) => {
+router.patch('/updateUserPassword', validateBody(updateUserSchema), verify, (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
         next();
     },
-    verify, userController.updateUserPassword);
+    userController.updateUserPassword);
 
-router.patch('/updateUser', validateBody(updateUserSchema),  (_, res, next) => {
+router.patch('/updateUser', validateBody(updateUserSchema), verify, (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
         next();
     },
-    verify, userController.updateUser);
+    userController.updateUser);
 
 module.exports = router;
