@@ -57,7 +57,7 @@ Content-Type: application/json
 #### USER
 
 ### Affiche touts les utilisateurs
-GET http://localhost:3000users
+GET http://localhost:3000/users
 
 
 ### affiche les utilisateurs par leurs rôle

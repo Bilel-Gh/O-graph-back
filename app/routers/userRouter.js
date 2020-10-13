@@ -11,7 +11,7 @@ const { validateBody } = require('../validations/validate')
 
 const router = express.Router();
 
-router.get('/users', verify, cache.route('users'), userController.findUsers);
+router.get('/users', verify, cache.route('users'), verify, userController.findUsers);
 
 router.get('/usersByRole/:role', verify, function (req, res, next) {
         // set cache name
@@ -34,7 +34,7 @@ router.get('/usersByProjectId/:projectId',  verify, function (req, res, next) {
     }, 
     cache.route(),userController.findUserByProjectId);
 
-router.post('/createUser', validateBody(createUserSchema), (_, res, next) => {
+router.post('/createUser', validateBody(createUserSchema), verify, (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
