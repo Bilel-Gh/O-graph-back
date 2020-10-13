@@ -16,7 +16,8 @@ module.exports = {
         SELECT comment.*, "user".role, "user".first_name, "user".last_name, "user".company_name 
         FROM comment 
         JOIN "user" ON "user".id = comment.user_id
-        WHERE list_comment_id = $1;`,
+        WHERE list_comment_id = $1
+        ORDER BY date_time DESC;`,
             [data.commentListId]);
         return result.rows;
     }
