@@ -10,7 +10,9 @@ module.exports = {
             .email({ minDomainSegments: 2, tlds: {allow: ['com', 'net', 'fr', 'io']}}),
 
         password: Joi.string().required()
-            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+            .pattern(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d$@$!%*?&]{8,32}$/)),
+            // (?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@$!%*?&]{8,32}$
+            // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 
         first_name: Joi.string().empty(''),
 
@@ -24,9 +26,6 @@ module.exports = {
     }),
 
     updateUserSchema: Joi.object({
-
-        // password: Joi.string().required()
-        // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 
         first_name: Joi.string().empty(''),
 
@@ -68,7 +67,8 @@ module.exports = {
         .email({ minDomainSegments: 2, tlds: {allow: ['com', 'net', 'fr', 'io']}}),
 
         password: Joi.string().required()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+        .pattern(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@$!%*?&]{8,32}$/))
+        // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
     }),
 
     newCommentListSchema: Joi.object({

@@ -26,7 +26,7 @@ const io = require('socket.io')(server);
 
 app.use(cors({
   'allowedHeaders': ['authtoken', 'Content-Type'],
-  'exposedHeaders': ['authtoken', 'role', 'maxAge'],
+  'exposedHeaders': ['authtoken', 'role', 'maxAge', 'user_id'],
   'origin': '*',
   'method': 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }));
