@@ -34,7 +34,7 @@ router.get('/usersByProjectId/:projectId',  verify, function (req, res, next) {
     }, 
     cache.route(),userController.findUserByProjectId);
 
-router.post('/createUser', validateBody(createUserSchema), verify, (_, res, next) => {
+router.post('/createUser', validateBody(createUserSchema), (_, res, next) => {
         cache.del('*', function (err, number) {
             console.log(`${number} caches have been deleted`);
         })
