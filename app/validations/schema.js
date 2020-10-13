@@ -10,7 +10,7 @@ module.exports = {
             .email({ minDomainSegments: 2, tlds: {allow: ['com', 'net', 'fr', 'io']}}),
 
         password: Joi.string().required()
-            .pattern(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d$@$!%*?&]{8,32}$/)),
+            .pattern(new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@$!%*?&]{8,32}$/)),
             // (?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@$!%*?&]{8,32}$
             // .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
 
