@@ -6,8 +6,8 @@ module.exports = {
     createNewSticker: async function(data){
 
         const result = await client.query(`
-        INSERT INTO sticker ("image_id", "position_x", "position_y")
-        VALUES ($1, $2, $3) RETURNING *;`, [data.image_id, data.position_x, data.position_y]);
+        INSERT INTO sticker ("image_id", "position_x", "position_y", "color")
+        VALUES ($1, $2, $3, $4) RETURNING *;`, [data.image_id, data.position_x, data.position_y, data.color]);
         return result.rows[0];
     },
     // Récupération des stickers d'une image

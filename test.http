@@ -136,9 +136,9 @@ POST http://localhost:3000/newFeedback
 Content-Type: application/json
 
 {
-    "project_id": 5,
-    "user_id": 2,
-    "name": "New feedbackkk"
+    "project_id": 1,
+    "user_id": 11,
+    "name": "New feedback"
 }
 
 ### Mettre à jour un feedback
@@ -185,7 +185,7 @@ POST http://localhost:3000/newImageList
 Content-Type: application/json
 
 {
-    "feedback_id": 1,
+    "feedback_id": 4,
     "name": "Nouvelle liste d'image"
 }
 
