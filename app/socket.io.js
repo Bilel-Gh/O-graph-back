@@ -13,7 +13,7 @@ module.exports = (io) => {
     
      const sendNewMessage = (socket) => {
         console.log("after receive")
-        socket.emit("SendNewComment", "newStateComment");
+        socket.broadcast.emit("SendNewComment", "newStateComment");
      }
 
 
