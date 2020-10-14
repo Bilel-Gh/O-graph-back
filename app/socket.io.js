@@ -3,17 +3,17 @@ module.exports = (io) => {
 
     io.on('connection', socket => {
         console.log("connectionnn")
-    
+        // console.log(socket.request.headers)
         socket.on('NewComment', (state)=>{
-            console.log(state, socket.id)
-           
-            sendNewMessage(socket)
+
+
+            sendNewMessage(socket, state)
         })
      })
-    
-     const sendNewMessage = (socket) => {
-        console.log("after receive")
-        socket.broadcast.emit("SendNewComment", "newStateComment");
+
+     const sendNewMessage = (socket, state) => {
+        console.log('pass')
+        socket.broadcast.emit('SendNewComment', state);
      }
 
 
