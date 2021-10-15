@@ -157,19 +157,19 @@ GET http://localhost:3000/feedbackByProjectId/5
 #### IMAGE
 
 ### Ajouter une nouvelle image
-POST http://localhost:3000/newImage
+POST http://localhost:3001/newImage
 Content-Type: application/json
 
 ## 'URl de l'image' attend l'url renvoyées lors de l'upload ↓
 {
     "image_url": "URL de l'image",
-    "list_image_id": 5,
+    "list_image_id": 3,
     "default_height": 230,
     "default_width": 160
 }
 
 ### Uploader une image
-POST http://localhost:3000/uploadImage
+POST http://localhost:3001/uploadImage
 
 ###  enctype="multipart/form-data → Voir avec nous.
 
